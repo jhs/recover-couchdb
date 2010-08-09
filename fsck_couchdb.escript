@@ -2,15 +2,19 @@
 %%! -pa ebin -pa couchdb/src/couchdb
 
 main([DbFilename]) ->
-    io:format("blah = ~p~n", [couch_util:to_binary(blah)]),
-    io:format("If you see this message, then couchdb is available~n", []),
+    couch_util:to_binary(just_confirming_that_couchdb_is_somewhere_out_there_in_space),
 
-    try
-        io:format("I should look at couch file: ~s\n", [DbFilename])
+    Fd = try
+        couch_file:open(DbFilename)
     catch
         _:_ ->
             usage()
-    end;
+    end,
+
+    io:format("Accessing ~s~n", [DbFilename]),
+    {ok, OldHeader} = couch_file:read_header(Fd),
+
+    ok;
 
 main(_) ->
     usage().
