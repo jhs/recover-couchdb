@@ -1,5 +1,5 @@
 #!/usr/bin/env escript
-%%! -pa ebin -pa build-couchdb/build/lib/couchdb/erlang/lib/couch-1.0.1/ebin
+%%! -pa ebin -pa couchdb/src/couchdb
 
 main([DbFilename]) ->
     io:format("blah = ~p~n", [couch_util:to_binary(blah)]),
