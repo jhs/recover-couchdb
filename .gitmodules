@@ -1,3 +1,6 @@
 [submodule "build-couchdb"]
 	path = build-couchdb
 	url = git://github.com/jhs/build-couchdb
+[submodule "couchdb"]
+	path = couchdb
+	url = git://git.apache.org/couchdb.git
