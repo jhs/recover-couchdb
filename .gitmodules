@@ -1,3 +1,6 @@
 [submodule "couchdb"]
 	path = couchdb
 	url = git://git.apache.org/couchdb.git
+[submodule "couchtest"]
+	path = couchtest
+	url = git://github.com/mikeal/couchtest
