@@ -1,7 +1,7 @@
 # Building
 
 1. First make sure all the submodules are checked out.
-   Run `git submodule init && git submodule update` in this directory
+   Run `git submodule update --init` in this directory
    and also in build-couchdb
 1. cd couchdb/src/couchdb
 1. erlc *.erl
