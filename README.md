@@ -10,10 +10,10 @@
 
 At this point you should be able to make a portable distribution like this:
 
-    tar cvf fsck_couchdb.tar fsck_couchdb.escript ebin/
+    tar cvf recover_couchdb.tar recover_couchdb.escript ebin/
 
 # Running
 
 Untar to your database server.
 
-    find . -type f -name '*.couch' -exec ./fsck_couchdb.escript {} \;
+    find . -type f -name '*.couch' -exec ./recover_couchdb.escript {} \;
