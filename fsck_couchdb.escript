@@ -14,20 +14,17 @@ main([DbFilename]) ->
     couch_config:set("couchdb", "max_dbs_open", "100"),
     couch_config:set("log", "level", "debug"),
 
+    application:start(crypto),
     couch_log:start_link(),
+    couch_rep_sup:start_link(),
+    couch_task_status:start_link(),
     couch_server:sup_start_link(),
+    gen_event:start_link({local, couch_db_update}),
 
-    RepairName = "lost_found_" ++ DatabaseName,
-    io:format("Fixing ~s -> ~s~n", [PathToDbFile, RepairName]),
-    try
-        couch_db_repair:make_lost_and_found(DatabaseName, PathToDbFile, couch_util:to_binary(RepairName))
-    catch
-        error:Anything ->
-            io:format("I got: ~p~n", [Anything]);
-        error:badmatch ->
-            io:format("Woa!", [])
-    end,
-
+    RepairName = DatabaseName ++ "_lost+found",
+    io:format("Fixing database ~s from ~s to ~s~n", [DatabaseName, PathToDbFile, RepairName]),
+    couch_db_repair:make_lost_and_found(DatabaseName, PathToDbFile, couch_util:to_binary(RepairName)),
+    %couch_db_repair:make_lost_and_found(DatabaseName),
     ok;
 
 main(_) ->
