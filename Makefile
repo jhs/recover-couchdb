@@ -5,7 +5,7 @@ beams = $(patsubst couchdb/src/couchdb/%.erl,ebin/%.beam,$(erls))
 
 recover_couchdb: ebin.zip
 	echo '#!/usr/bin/env escript' > $@
-	echo '%%! -smp enable -pa ebin -escript main recover_couchdb' >> $@
+	echo '%%! -smp enable -escript main recover_couchdb' >> $@
 	cat ebin.zip >> $@
 	chmod +x $@
 
@@ -19,7 +19,7 @@ $(beams): ebin/%.beam: couchdb/src/couchdb/%.erl
 	erlc -o ebin $<
 
 ebin.zip: ebin/recover_couchdb.beam $(beams)
-	zip -r -9 ebin.zip ebin
+	cd ebin && zip -9 ../ebin.zip *.beam
 
 clean:
 	rm -rf ebin
