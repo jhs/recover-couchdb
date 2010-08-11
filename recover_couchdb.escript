@@ -31,7 +31,7 @@ main(_) ->
     usage().
 
 usage() ->
-    io:format("usage: fsck_couchdb /path/to/your/database.couch\n"),
+    io:format("usage: recover_couchdb /path/to/your/database.couch\n"),
     halt(1).
 
 % vim: sw=4 sts=4 et
