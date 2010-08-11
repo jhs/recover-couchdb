@@ -1,5 +1,6 @@
-#!/usr/bin/env escript
-%%! -pa ebin -pa couchdb/src/couchdb
+-module(recover_couchdb).
+
+-export([main/1]).
 
 main([DbFilename]) ->
     couch_util:to_binary(just_confirming_that_couchdb_is_somewhere_out_there_in_space),
@@ -14,6 +15,7 @@ main([DbFilename]) ->
     couch_config:set("couchdb", "max_dbs_open", "100"),
     couch_config:set("log", "level", "debug"),
 
+    % Start required OTP servers.
     application:start(crypto),
     couch_log:start_link(),
     couch_rep_sup:start_link(),

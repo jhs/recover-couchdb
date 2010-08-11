@@ -1,1 +1,4 @@
 .*.swp
+ebin
+ebin.zip
+recover_couchdb
