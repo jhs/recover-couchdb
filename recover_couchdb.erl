@@ -40,4 +40,20 @@ usage() ->
     io:format("usage: recover_couchdb /path/to/your/database.couch\n"),
     halt(1).
 
+glob_to_regex(Str) ->
+    glob_to_regex(Str, []).
+
+glob_to_regex([], Out) ->
+    "^" ++ lists:reverse(Out) ++ "$";
+
+glob_to_regex([Char | Rest], Out) ->
+    Escaped = case Char of
+        $* -> ".*";
+        $? -> ".";
+        $[ -> "[";
+        $] -> "]";
+        Normal -> [$\\, Normal]
+    end,
+    glob_to_regex(Rest, [Escaped | Out]).
+
 % vim: sw=4 sts=4 et
