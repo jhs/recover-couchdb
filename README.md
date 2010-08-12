@@ -10,9 +10,10 @@ Copy recover_couchdb to your database server, possibly running
 `chmod +x recover_couchb` if the copy process did not copy its execute
 permission.
 
-Next run the tool with all of your .couch files.
+Next run the tool with all of your .couch files. For a normal source-code
+install, that might look like this:
 
-    find . -type f -name '*.couch' -exec ./recover_couchdb {} \;
+    ./recover_couchdb /usr/local/var/lib/couchdb/*.couch
 
 # Windows
 
