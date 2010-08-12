@@ -24,7 +24,10 @@ main([DbFilename]) ->
     gen_event:start_link({local, couch_db_update}),
 
     RepairName = "lost+found/" ++ DatabaseName,
-    io:format("Fixing database ~s from ~s to ~s~n", [DatabaseName, PathToDbFile, RepairName]),
+    io:format("Checking database: ~s~n", [DatabaseName]),
+    io:format("Source file: ~s~n", [PathToDbFile]),
+    io:format("Target file: ~s~n", [DatabaseDir ++ "/" ++ RepairName]),
+    io:format("~n", []),
     couch_db_repair:make_lost_and_found(DatabaseName, PathToDbFile, couch_util:to_binary(RepairName)),
     %couch_db_repair:make_lost_and_found(DatabaseName),
     ok;
