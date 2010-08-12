@@ -2,3 +2,4 @@
 ebin
 ebin.zip
 recover_couchdb
+*.log
