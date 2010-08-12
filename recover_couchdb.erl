@@ -23,7 +23,14 @@ main([DbFilename]) ->
     couch_server:sup_start_link(),
     gen_event:start_link({local, couch_db_update}),
 
-    RepairName = DatabaseName ++ "_lost+found",
+    CleanName = case string:substr(DatabaseName, 1, 1) of
+        "_" ->
+            "_system/" ++ string:substr(DatabaseName, 2);
+        Anything ->
+            Anything
+    end,
+
+    RepairName = "lost+found/" ++ CleanName,
     io:format("Fixing database ~s from ~s to ~s~n", [DatabaseName, PathToDbFile, RepairName]),
     couch_db_repair:make_lost_and_found(DatabaseName, PathToDbFile, couch_util:to_binary(RepairName)),
     %couch_db_repair:make_lost_and_found(DatabaseName),
