@@ -14,6 +14,7 @@ main([DbFilename]) ->
     couch_config:set("couchdb", "database_dir", DatabaseDir),
     couch_config:set("couchdb", "max_dbs_open", "100"),
     couch_config:set("log", "level", "debug"),
+    couch_config:set("log", "file", DatabaseName ++ "_recovery.log"),
 
     % Start required OTP servers.
     application:start(crypto),
