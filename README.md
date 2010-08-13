@@ -1,4 +1,11 @@
+# Getting
+
+You can clone this Git repository, but there are also pre-built binaries in the
+[Download](recover-couchdb/archives/master) section.
+
 # Building
+
+If you downloaded the `.zip` file from GitHub, this step is not required.
 
 1. First make sure all the submodules are checked out by running
    Run `git submodule update --init` in this directory.
