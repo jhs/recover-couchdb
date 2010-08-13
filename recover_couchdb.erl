@@ -2,6 +2,9 @@
 
 -export([main/1]).
 
+main([]) ->
+    usage();
+
 main(DbFiles) when is_list(DbFiles) ->
     couch_util:to_binary(just_confirming_that_couchdb_is_somewhere_out_there_in_space),
 
