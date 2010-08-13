@@ -1,7 +1,7 @@
 # Getting
 
 You can clone this Git repository, but there are also pre-built binaries in the
-[Download](recover-couchdb/archives/v0.4) section.
+[Download](recover-couchdb/archives/v0.5) section.
 
 # Building
 
