@@ -1,6 +1,0 @@
-[submodule "couchdb"]
-	path = couchdb
-        url = git://github.com/jhs/couchdb
-[submodule "couchtest"]
-	path = couchtest
-	url = git://github.com/mikeal/couchtest
