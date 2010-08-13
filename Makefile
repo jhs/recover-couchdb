@@ -21,9 +21,28 @@ $(beams): ebin/%.beam: couchdb/src/couchdb/%.erl
 ebin.zip: ebin/recover_couchdb.beam $(beams)
 	cd ebin && zip -9 ../ebin.zip *.beam
 
-clean:
+clean_ebin:
 	rm -rf ebin
 	rm -f ebin.zip
+
+clean: clean_ebin
 	rm -f recover_couchdb
+
+tag: clean
+	read -p "This is a pretty destructive operation. Press ^C if you are frightened:" foo
+	rm -rf couchdb
+	git submodule update
+	rm -f .gitmodules
+	rm -fr couchtest
+	git rm couchtest
+	mv couchdb couchdb_tmp
+	git rm couchdb
+	mv couchdb_tmp couchdb
+	rm -rf couchdb/.git
+	git add couchdb
+	make recover_couchdb
+	make clean_ebin
+	git add --force recover_couchdb
+	echo "I think you are ready to commit and tag."
 
 # vim: sw=8 sts=8 noet
